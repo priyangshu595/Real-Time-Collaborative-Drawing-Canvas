@@ -1,0 +1,192 @@
+/* ===== Theme tokens ===== */
+:root{
+  --bg: #0f172a;             /* slate-900 */
+  --panel: rgba(255,255,255,0.08);
+  --panel-stroke: rgba(255,255,255,0.12);
+  --text: #e5e7eb;           /* zinc-200 */
+  --muted: #94a3b8;          /* slate-400 */
+  --brand: #22d3ee;          /* cyan-400 */
+  --brand-2: #a78bfa;        /* violet-400 */
+  --ok: #10b981;             /* emerald-500 */
+  --warn: #f59e0b;           /* amber-500 */
+  --danger: #ef4444;         /* red-500 */
+
+  --radius: 16px;
+  --radius-sm: 10px;
+  --shadow-1: 0 10px 30px rgba(0,0,0,.35);
+  --shadow-2: 0 4px 16px rgba(0,0,0,.25);
+}
+
+/* ===== Light Theme Variables ===== */
+body.light {
+  --bg: #f8fafc;
+  --panel: rgba(255,255,255,0.9);
+  --panel-stroke: rgba(0,0,0,0.08);
+  --text: #111827;
+  --muted: #4b5563;
+  --brand: #0ea5e9;
+  --brand-2: #8b5cf6;
+  background: linear-gradient(180deg, #e2e8f0 0%, #f8fafc 100%);
+}
+
+body.light header,
+body.light footer {
+  background: var(--panel);
+  color: var(--text);
+}
+
+body.light #toolbar button.active {
+  background: linear-gradient(180deg, rgba(14,165,233,0.35), rgba(139,92,246,0.28));
+}
+
+body.light main {
+  background: radial-gradient(1000px 600px at 20% -10%, rgba(14,165,233,.08), transparent 60%),
+              radial-gradient(700px 400px at 120% 10%, rgba(139,92,246,.08), transparent 50%),
+              linear-gradient(180deg,#f8fafc 0%, #e2e8f0 100%);
+  border: 1px solid var(--panel-stroke);
+}
+
+body.light #metrics {
+  background: rgba(17,24,39,0.85);
+  color: #f1f5f9;
+  border-color: rgba(255,255,255,0.2);
+}
+
+/* ===== Reset / base ===== */
+*{ box-sizing:border-box }
+html,body{ height:100%; margin:0; font-family:Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; color:var(--text); background:linear-gradient(180deg,#0b1022 0%, #0f172a 100%); }
+#app{ display:flex; flex-direction:column; height:100vh; gap:12px; padding:12px; }
+
+/* ===== Header / Toolbar card ===== */
+header{
+  display:flex; flex-direction:column; gap:10px;
+  background:var(--panel);
+  border:1px solid var(--panel-stroke);
+  border-radius:var(--radius);
+  padding:14px 16px;
+  box-shadow:var(--shadow-2);
+  backdrop-filter:saturate(140%) blur(8px);
+}
+
+header h1{
+  font-size:18px; font-weight:700; letter-spacing:.3px; margin:0;
+  display:flex; align-items:center; gap:10px;
+}
+header h1::before{
+  content:'🎨';
+  filter:drop-shadow(0 2px 4px rgba(0,0,0,.3));
+}
+
+/* toolbar row */
+#toolbar{
+  display:flex; align-items:center; flex-wrap:wrap; gap:8px;
+  margin-top:4px;
+}
+
+/* button group look */
+#toolbar button{
+  appearance:none; border:none; cursor:pointer;
+  padding:8px 12px; border-radius:12px;
+  color:var(--text);
+  background:linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
+  border:1px solid var(--panel-stroke);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08), var(--shadow-2);
+  transition:transform .05s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+#toolbar button:hover{ transform:translateY(-1px); }
+#toolbar button:active{ transform:translateY(0); }
+#toolbar button.active{
+  background:linear-gradient(180deg, rgba(34,211,238,.35), rgba(167,139,250,.28));
+  border-color: rgba(255,255,255,.25);
+  box-shadow: 0 6px 18px rgba(34,211,238,.25), inset 0 1px 0 rgba(255,255,255,.15);
+}
+
+/* inputs */
+#toolbar input[type="color"]{
+  width:38px; height:38px; padding:0; border-radius:12px; border:1px solid var(--panel-stroke);
+  background:#0000; overflow:hidden; cursor:pointer; box-shadow:var(--shadow-2);
+}
+#toolbar label{
+  display:inline-flex; align-items:center; gap:8px; color:var(--muted); font-size:12px;
+  padding:8px 10px; border-radius:12px; border:1px solid var(--panel-stroke);
+  background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.05));
+}
+#toolbar input[type="range"]{
+  accent-color: var(--brand);
+}
+
+/* users line */
+#users{ margin-left:auto; display:flex; align-items:center; gap:8px; color:var(--muted); font-size:13px; }
+#userList .user-badge{
+  display:inline-flex; align-items:center; gap:6px;
+  padding:4px 10px; border-radius:999px;
+  background:rgba(255,255,255,.08);
+  border:1px solid var(--panel-stroke);
+  font-size:12px; line-height:16px;
+  box-shadow:var(--shadow-1);
+}
+#userList .dot{
+  width:10px; height:10px; border-radius:50%;
+  border:2px solid rgba(255,255,255,.25);
+}
+
+/* ===== Stage ===== */
+main{
+  flex:1; position:relative;
+  background:radial-gradient(1200px 600px at 20% -10%, rgba(34,211,238,.13), transparent 55%),
+             radial-gradient(900px 500px at 120% 10%, rgba(167,139,250,.10), transparent 50%),
+             linear-gradient(180deg,#0f172a 0%, #0b1225 100%);
+  border:1px solid var(--panel-stroke);
+  border-radius:var(--radius);
+  overflow:hidden;
+  box-shadow:var(--shadow-1);
+}
+
+canvas{
+  width:100%; height:100%; display:block;
+  /* touch support */
+  touch-action:none;
+}
+
+/* cursor overlay */
+#cursorLayer{ position:absolute; inset:0; pointer-events:none; }
+.cursor-indicator{
+  position:absolute; transform:translate(-50%,-50%);
+  display:flex; align-items:center; gap:6px; white-space:nowrap;
+  font-size:12px; line-height:14px; font-weight:600;
+  text-shadow: 0 1px 0 rgba(0,0,0,.4);
+}
+.cursor-indicator .cursor-dot{
+  width:12px; height:12px; border-radius:50%;
+  border:2px solid rgba(255,255,255,.85); box-shadow:0 0 0 1px rgba(0,0,0,.35);
+}
+.cursor-indicator .cursor-name{
+  padding:2px 6px; border-radius:6px; background:rgba(255,255,255,.85);
+  color:#111827; border:1px solid rgba(17,24,39,.10);
+}
+
+/* ===== Footer / metrics ===== */
+footer{
+  padding:8px 10px;
+  color:var(--muted);
+  background:var(--panel);
+  border:1px solid var(--panel-stroke);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow-2);
+}
+
+#metrics{
+  position:fixed; bottom:14px; right:16px;
+  font-size:12px; color:#0b1225;
+  background:rgba(255,255,255,.85);
+  padding:6px 10px; border-radius:10px;
+  border:1px solid rgba(17,24,39,.12);
+  box-shadow:var(--shadow-2);
+}
+
+/* ===== Small screens ===== */
+@media (max-width: 720px){
+  #toolbar{ gap:6px; }
+  header{ padding:12px; }
+  #users{ width:100%; justify-content:flex-start; margin-left:0; }
+}
